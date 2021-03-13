@@ -28,7 +28,7 @@ const tableData = Mock.mock({
 });
 
 const test1 = async (ctx, next) => {
-  // console.log(ctx.headers.query)
+  // console.log(ctx.query)
 
   // let res = await db.query('select * from article', [])
 
@@ -39,13 +39,17 @@ const test1 = async (ctx, next) => {
   });
 
   ctx.state.code = 1;
-  ctx.state.msg = '成功';
   ctx.state.data = res;
-  // ctx.body = {code: 1, data: 'test1'}
+  ctx.state.msg = '';
+
+  // ctx.body = {
+  //   code: 1,
+  //   data: res,
+  //   msg: '',
+  // };
 };
 
 const getTableData = async (ctx, next) => {
-  // 模拟分页
   const { currentPage, pageSize } = ctx.query;
   const start = (currentPage - 1) * pageSize;
   const end = start + pageSize;
@@ -55,9 +59,85 @@ const getTableData = async (ctx, next) => {
     total: 500,
   };
 
-  // ctx.state.code = 200;
-  // ctx.state.data = res;
-  // ctx.state.msg = '';
+  ctx.body = {
+    code: 200,
+    data: res,
+    msg: '',
+  };
+};
+
+const getSelectData = async (ctx, next) => {
+  const res = {
+    records: [
+      { text: '篮球', value: '1' },
+      { text: '足球', value: '2' },
+      { text: '乒乓球', value: '3' },
+      { text: '羽毛球', value: '4', disabled: true },
+      { text: '游泳', value: '5' },
+      { text: '滑雪', value: '6' },
+    ],
+  };
+
+  ctx.body = {
+    code: 200,
+    data: res,
+    msg: '',
+  };
+};
+
+const getTreeData = async (ctx, next) => {
+  const res = {
+    records: [
+      {
+        value: '1',
+        text: '一级 1',
+        children: [
+          {
+            value: '4',
+            text: '二级 1-1',
+            children: [
+              {
+                value: '9',
+                text: '三级 1-1-1',
+              },
+              {
+                value: '10',
+                text: '三级 1-1-2',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        value: '2',
+        text: '一级 2',
+        children: [
+          {
+            value: '5',
+            text: '二级 2-1',
+          },
+          {
+            value: '6',
+            text: '二级 2-2',
+          },
+        ],
+      },
+      {
+        value: '3',
+        text: '一级 3',
+        children: [
+          {
+            value: '7',
+            text: '二级 3-1',
+          },
+          {
+            value: '8',
+            text: '二级 3-2',
+          },
+        ],
+      },
+    ],
+  };
 
   ctx.body = {
     code: 200,
@@ -69,4 +149,6 @@ const getTableData = async (ctx, next) => {
 module.exports = {
   test1,
   getTableData,
+  getSelectData,
+  getTreeData,
 };
