@@ -10,5 +10,6 @@ router.post('/login', controllers.login.login);
 router.get('/api/design/getTableData', controllers.api.getTableData);
 router.get('/api/design/getSelectData', controllers.api.getSelectData);
 router.get('/api/design/getTreeData', controllers.api.getTreeData);
+router.get('/api/design/getRegionData', controllers.api.getRegionData);
 
 module.exports = router;

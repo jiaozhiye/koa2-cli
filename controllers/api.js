@@ -51,8 +51,8 @@ const test1 = async (ctx, next) => {
 
 const getTableData = async (ctx, next) => {
   const { currentPage, pageSize } = ctx.query;
-  const start = (currentPage - 1) * pageSize;
-  const end = start + pageSize;
+  const start = (Number(currentPage) - 1) * Number(pageSize);
+  const end = start + Number(pageSize);
 
   const res = {
     records: tableData.items.slice(start, end),
@@ -146,9 +146,33 @@ const getTreeData = async (ctx, next) => {
   };
 };
 
+const getRegionData = async (ctx, next) => {
+  const res = {
+    records: [
+      {
+        text: '浙江省',
+        value: '330000',
+        children: [{ text: '杭州市', value: '330100', children: [{ text: '清河区', value: '330201' }] }],
+      },
+      {
+        text: '江苏省',
+        value: '320000',
+        children: [{ text: '苏州市', value: '320101', children: [{ text: '沧浪区', value: '320502' }] }],
+      },
+    ],
+  };
+
+  ctx.body = {
+    code: 200,
+    data: res,
+    msg: '',
+  };
+};
+
 module.exports = {
   test1,
   getTableData,
   getSelectData,
   getTreeData,
+  getRegionData,
 };
