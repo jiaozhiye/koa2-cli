@@ -10,7 +10,7 @@ const CONF = {
   // 权限校验
   auth: {
     admin_secret: 'admin-token',
-    blackList: ['api'], // 请求的黑名单前缀
+    blackList: ['/api'], // 请求的黑名单前缀
   },
 
   /**

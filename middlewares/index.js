@@ -19,6 +19,8 @@ module.exports = (app) => {
   app.use(response);
 
   // 使用 cors 中间件处理跨域
+  // 前端 withCredentials: true -> 后端要设置 Access-Control-Allow-Origin 为你的源地址，例如 http://localhost:8080，不能是 *，而且还要设置 header('Access-Control-Allow-Credentials: true')
+  // credentials -> header('Access-Control-Allow-Credentials: true')，允许跨域请求携带 cookie
   app.use(cors({ origin: config.whitelist[0], credentials: true }));
 
   // 解析 POST请求 及 文件上传

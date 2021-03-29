@@ -38,12 +38,12 @@ const test1 = async (ctx, next) => {
     return res1 && res2;
   });
 
-  ctx.state.code = 1;
+  ctx.state.code = 200;
   ctx.state.data = res;
   ctx.state.msg = '';
 
   // ctx.body = {
-  //   code: 1,
+  //   code: 200,
   //   data: res,
   //   msg: '',
   // };
