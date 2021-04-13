@@ -29,17 +29,19 @@ module.exports = (app) => {
       multipart: true,
       jsonLimit: 20 * 1024 * 1024,
       formidable: {
+        uploadDir: path.resolve(__dirname, '../', 'uploads'), // 上传目录
+        keepExtensions: true, // 保留文件扩展名
         maxFileSize: 200 * 1024 * 1024, // 设置上传文件大小最大限制，默认2M
       },
     })
   );
 
-  // 权限中间件
-  // app.use(auth());
-
   // 静态资源服务中间件
   app.use(koaStatic(path.resolve(__dirname, '../../', 'dist')));
   app.use(koaStatic(path.resolve(__dirname, '../', 'uploads')));
+
+  // 权限中间件
+  // app.use(auth());
 
   // 路由分发中间件
   app.use(router.routes());

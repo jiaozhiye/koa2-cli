@@ -1,3 +1,4 @@
+const path = require('path');
 const db = require('../models/db');
 const Mock = require('mockjs');
 
@@ -169,10 +170,23 @@ const getRegionData = async (ctx, next) => {
   };
 };
 
+const upload = async (ctx, next) => {
+  const { file } = ctx.request.files;
+  const basename = path.basename(file.path);
+
+  // 返回数据
+  ctx.body = {
+    code: 200,
+    data: `${ctx.origin}/${basename}`,
+    msg: '',
+  };
+};
+
 module.exports = {
   test1,
   getTableData,
   getSelectData,
   getTreeData,
   getRegionData,
+  upload,
 };
