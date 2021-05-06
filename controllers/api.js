@@ -1,5 +1,6 @@
 const path = require('path');
 const db = require('../models/db');
+const utils = require('../utils');
 const Mock = require('mockjs');
 
 const tableData = Mock.mock({
@@ -59,6 +60,8 @@ const getTableData = async (ctx, next) => {
     records: tableData.items.slice(start, end),
     total: 500,
   };
+
+  await utils.sleep(1000);
 
   ctx.body = {
     code: 200,
