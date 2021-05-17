@@ -5,7 +5,7 @@ const CONF = {
   port: '3000',
 
   // 允许请求白名单
-  whitelist: ['http://localhost:8081', 'http://localhost:8080'],
+  whitelist: ['*', 'http://localhost:8080'],
 
   // 权限校验
   auth: {
