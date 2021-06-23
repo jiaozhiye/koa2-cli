@@ -70,6 +70,21 @@ const getTableData = async (ctx, next) => {
   };
 };
 
+const getSummationData = async (ctx, next) => {
+  const res = {
+    summation: {
+      num: 1000,
+      total: 123456,
+    },
+  };
+
+  ctx.body = {
+    code: 200,
+    data: res,
+    msg: '',
+  };
+};
+
 const getSelectData = async (ctx, next) => {
   const res = {
     records: [
@@ -188,6 +203,7 @@ const upload = async (ctx, next) => {
 module.exports = {
   test1,
   getTableData,
+  getSummationData,
   getSelectData,
   getTreeData,
   getRegionData,
