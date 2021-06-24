@@ -70,6 +70,18 @@ const getTableData = async (ctx, next) => {
   };
 };
 
+const getTableKeys = async (ctx, next) => {
+  const res = tableData.items.map((x) => x.id);
+
+  ctx.body = {
+    code: 200,
+    data: {
+      recordKeys: res,
+    },
+    msg: '',
+  };
+};
+
 const getSummationData = async (ctx, next) => {
   const res = {
     summation: {
@@ -203,6 +215,7 @@ const upload = async (ctx, next) => {
 module.exports = {
   test1,
   getTableData,
+  getTableKeys,
   getSummationData,
   getSelectData,
   getTreeData,
