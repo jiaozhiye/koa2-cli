@@ -97,6 +97,20 @@ const getSummationData = async (ctx, next) => {
   };
 };
 
+const getTableAuth = async (ctx, next) => {
+  const res = {
+    fieldNames: ['choice', 'address'],
+    isExport: 1,
+    isPrint: 1,
+  };
+
+  ctx.body = {
+    code: 200,
+    data: res,
+    msg: '',
+  };
+};
+
 const getSelectData = async (ctx, next) => {
   const res = {
     records: [
@@ -217,6 +231,7 @@ module.exports = {
   getTableData,
   getTableKeys,
   getSummationData,
+  getTableAuth,
   getSelectData,
   getTreeData,
   getRegionData,
