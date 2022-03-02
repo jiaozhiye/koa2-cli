@@ -52,7 +52,7 @@ const test1 = async (ctx, next) => {
 };
 
 const getTableData = async (ctx, next) => {
-  const { currentPage, pageSize } = ctx.query;
+  const { currentPage, pageSize } = ctx.request.body;
   const start = (Number(currentPage) - 1) * Number(pageSize);
   const end = start + Number(pageSize);
 
