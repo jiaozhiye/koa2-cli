@@ -214,6 +214,31 @@ const getRegionData = async (ctx, next) => {
   };
 };
 
+const getStreetData = async (ctx, next) => {
+  const res = {
+    records: [
+      {
+        text: '前门街道',
+        value: '110101011',
+      },
+      {
+        text: '天坛街道',
+        value: '110101012',
+      },
+      {
+        text: '朝阳门街道',
+        value: '110101013',
+      },
+    ],
+  };
+
+  ctx.body = {
+    code: 200,
+    data: res,
+    msg: '',
+  };
+};
+
 const upload = async (ctx, next) => {
   const { file } = ctx.request.files;
   const basename = path.basename(file.path);
@@ -235,5 +260,6 @@ module.exports = {
   getSelectData,
   getTreeData,
   getRegionData,
+  getStreetData,
   upload,
 };
